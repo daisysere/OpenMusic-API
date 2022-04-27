@@ -6,38 +6,44 @@ class AlbumsHandler {
     this._service = service;
     this._validator = validator;
 
-    this.postAlbumsHandler = this.postAlbumsHandler.bind(this);
+    this.postAlbumHandler = this.postAlbumHandler.bind(this);
     this.getAlbumByIdHandler = this.getAlbumByIdHandler.bind(this);
     this.putAlbumByIdHandler = this.putAlbumByIdHandler.bind(this);
     this.deleteAlbumByIdHandler = this.deleteAlbumByIdHandler.bind(this);
   }
 
-  async postAlbumsHandler(request, h) {
+  async postAlbumHandler(request, h) {
     try {
       this._validator.validateAlbumPayload(request.payload);
       const { name, year } = request.payload;
       const albumId = await this._service.addAlbum({ name, year });
 
-      return h.response({
+      const response = h.response({
         status: 'success',
         message: 'Album berhasil ditambahkan',
         data: {
           albumId,
         },
-      }).code(201);
+      });
+      response.code(201);
+      return response;
     } catch (error) {
       if (error instanceof ClientError) {
-        return h.response({
+        const response = h.response({
           status: 'fail',
           message: error.message,
-        }).code(error.statusCode);
+        });
+        response.code(error.statusCode);
+        return response;
       }
 
-      console.log(error);
-      return h.response({
+      const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi masalah pada server kami',
-      }).code(500);
+      });
+      response.code(500);
+      console.error(error);
+      return response;
     }
   }
 
