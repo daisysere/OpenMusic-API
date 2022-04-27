@@ -41,17 +41,6 @@ class AlbumsHandler {
     }
   }
 
-  async getAlbumsHandler() {
-    const albums = await this._service.getAlbums();
-
-    return {
-      status: 'success',
-      data: {
-        albums,
-      },
-    };
-  }
-
   async getAlbumByIdHandler(request, h) {
     try {
       const { id } = request.params;
