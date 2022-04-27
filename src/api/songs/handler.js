@@ -12,7 +12,7 @@ class SongsHandler {
     this.deleteSongByIdHandler = this.deleteSongByIdHandler.bind(this);
   }
 
-  async postSongHandler(request, h) {
+  async postSongsHandler(request, h) {
     try {
       this._validator.validateSongPayload(request.payload);
       const {
