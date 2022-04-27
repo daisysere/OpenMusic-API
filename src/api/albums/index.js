@@ -2,7 +2,7 @@ const AlbumsHandler = require('./handler');
 const routes = require('./routes');
 
 module.exports = {
-  name: 'openMusik',
+  name: 'albums',
   version: '1.0.0',
   register: async (server, { service, validator }) => {
     const newAlbumsHandler = new AlbumsHandler(service, validator);
