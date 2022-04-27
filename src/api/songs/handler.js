@@ -18,8 +18,8 @@ class SongsHandler {
       const {
         title,
         year,
-        genre,
         performer,
+        genre,
         duration,
         albumId,
       } = request.payload;
@@ -27,8 +27,8 @@ class SongsHandler {
       const songId = await this._service.addSong({
         title,
         year,
-        genre,
         performer,
+        genre,
         duration,
         albumId,
       });
@@ -103,8 +103,8 @@ class SongsHandler {
       const {
         title,
         year,
-        genre,
         performer,
+        genre,
         duration,
         albumId,
       } = request.payload;
@@ -112,8 +112,8 @@ class SongsHandler {
       await this._service.editSongById(id, {
         title,
         year,
-        genre,
         performer,
+        genre,
         duration,
         albumId,
       });
